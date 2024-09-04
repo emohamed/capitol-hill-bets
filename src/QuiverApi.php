@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Response;
 
 class QuiverApi {
 	/**
-	 * How many trades per page are we fetching?
+	 * The guzzle client
 	 */
 	private Client $client;
 

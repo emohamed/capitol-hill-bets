@@ -2,9 +2,16 @@
 
 namespace CapitolHillBets;
 
+/**
+ * 1. Truncate the table
+ * 2. Take all trades from the API
+ * 3. Split it to batches of 1000
+ * 4. Save each batch through an SQL query
+ */
 class SyncTradesAction {
-
-	// How many trades to save per SQL query
+	/**
+	 * How many trades to save per SQL query
+	 */
 	const BATCH_SIZE = 1000;
 
 	function handle() {
@@ -28,6 +35,7 @@ class SyncTradesAction {
 	private function remove_non_digits($value) {
 		return intval(preg_replace('~\D~', '', $value));
 	}
+
 	function save_batch(array $trades) {
 		global $wpdb;
 

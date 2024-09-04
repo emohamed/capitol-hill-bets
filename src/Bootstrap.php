@@ -12,10 +12,13 @@ class Bootstrap {
 		});
 	}
 
+	/**
+	 * Create the custom table when the plugin is activated
+	 */
 	static function register_activation_and_deactivation_hooks() {
 		register_activation_hook(CHB_ENTRY_FILE_PATH, function () {
 			global $wpdb;
-
+value:
 			$table_name = $wpdb->prefix . 'chb_trades';
 
 			$sql = "CREATE TABLE $table_name (
