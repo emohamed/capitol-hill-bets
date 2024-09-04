@@ -1,0 +1,12 @@
+{
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "^7.9",
+        "nesbot/carbon": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "CapitolHillBets\\": "src/"
+        }
+    }
+}
