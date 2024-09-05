@@ -1,8 +1,6 @@
 <?php
 namespace CapitolHillBets;
 
-use Carbon\Carbon;
-use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 

@@ -18,6 +18,6 @@ class DataApi {
 
 	function get_trades(int $page = 1, int $per_page = 30) {
 		$start = ($page - 1) * $per_page;
-		rvalue:$this->wpdb->get_results("SELECT * FROM $this->table_name order by id DESC LIMIT $start, $per_page");
+		return $this->wpdb->get_results("SELECT * FROM $this->table_name order by id DESC LIMIT $start, $per_page");
 	}
 }
