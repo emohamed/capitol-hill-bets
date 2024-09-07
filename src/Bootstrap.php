@@ -33,7 +33,10 @@ class Bootstrap {
 				`party` VARCHAR(255) NOT NULL,
 				`last_modified` DATETIME NOT NULL,
 				`synced_at` DATETIME NOT NULL,
-				PRIMARY KEY  (`id`)
+				PRIMARY KEY  (`id`),
+				INDEX(representative),
+				INDEX(ticker),
+				INDEX(transaction_date)
 			)";
 
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
