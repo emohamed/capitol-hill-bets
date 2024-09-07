@@ -93,7 +93,7 @@ class SyncTradesAction {
 	function save_batch(array $trades): void {
 		$sql_parts = [];
 		foreach ($trades as $trade) {
-			[$range_min, $range_max] = explode(' - ', $trade['Range']);
+			list($range_min, $range_max) = explode(' - ', $trade['Range'], 2);
 
 			$fields = [
 				esc_sql($trade['Representative']),
@@ -142,14 +142,15 @@ class SyncTradesAction {
 	 * something seems fishy
 	 */
 	private function do_sanity_check_for_new_data() {
-		$new_trades_count = $this->wpdb->get_var("
+		// get_var() would return a `string "0"` here, causing
+		// problems with strict check below
+		$new_trades_count = intval($this->wpdb->get_var("
 			SELECT COUNT(*)
 			FROM {$this->trades_table_name}
 			WHERE `synced_at`='{$this->sync_start_time}'
-		");
+		"));
 
-		// get_var would return a `string "0"` here
-		if (intval($new_trades_count) === 0) {
+		if ($new_trades_count === 0) {
 			throw new \RuntimeException("No new trades were added");
 		}
 	}
