@@ -32,6 +32,7 @@ class Bootstrap {
 				`amount` BIGINT NOT NULL,
 				`party` VARCHAR(255) NOT NULL,
 				`last_modified` DATETIME NOT NULL,
+				`synced_at` DATETIME NOT NULL,
 				PRIMARY KEY  (`id`)
 			)";
 
@@ -40,7 +41,9 @@ class Bootstrap {
 		});
 
 		register_deactivation_hook(CHB_ENTRY_FILE_PATH, function () {
-			// Drop the table?
+			global $wpdb;
+			$table_name = $wpdb->prefix . 'chb_trades';
+			$wpdb->query( "DROP TABLE $table_name");
 		});
 	}
 
